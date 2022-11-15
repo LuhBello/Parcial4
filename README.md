@@ -1,7 +1,8 @@
-# SiembrasMiantioquia_WinForms
-Aplicaciones tipo Desktop para demostrar conectividad con SQLite.
+# Pescas_db_NoSQL
+Aplicaciones tipo Desktop para demostrar conectividad con MongoDB.
 
 - Framework: .NET 4.8.x
 - Tipo proyecto: Windows Forms
 - ORM: Dapper
-- DB: Sqlite 3.x
+- DB: MongoDB
+
