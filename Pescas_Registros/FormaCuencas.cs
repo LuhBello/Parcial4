@@ -51,6 +51,7 @@ namespace Pesca_Registros
             listInfoCuencas.DisplayMember = "infoCuencas";
             listInfoCuencas.Invalidate();
             listInfoCuencas.Refresh();
+            
             //Seleccionamos el primer municipio de la lista
             //listInfoCuencas.SelectedIndex = 0;
         }
@@ -188,19 +189,28 @@ namespace Pesca_Registros
         {
             try
             {
-                string[] infoCuenca = listInfoCuencas.SelectedItem.ToString().Split('-');
-                Cuenca laCuenca = new Cuenca();
-                laCuenca.Nombre = infoCuenca[1];
-                laCuenca.Codigo = int.Parse(infoCuenca[0]);
-                if (BuscarEnPescas(laCuenca.Nombre))
+                    string[] infoCuenca = listInfoCuencas.SelectedItem.ToString().Split('-');
+                    Cuenca laCuenca = new Cuenca();
+                    laCuenca.Nombre = infoCuenca[1];
+                    laCuenca.Codigo = int.Parse(infoCuenca[0]);
+                if (AccesoDatos.ValidaCuenca(laCuenca))
                 {
-
-                    AccesoDatos.BorrarCuenca(laCuenca.Codigo);
-                    ActualizarCampos();
+                    if (BuscarEnPescas(laCuenca.Nombre))
+                    {
+                        AccesoDatos.BorrarCuenca(laCuenca.Codigo);
+                        ActualizarCampos();
                         MessageBox.Show("La cuenca se borró correctamente",
                             "Eliminación exitosa",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La cuenca no se puede borrar ya que tiene dependencias.",
+                            "Eliminación Fallida",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                 }
             }
             catch (FormatException unErrorFormato)

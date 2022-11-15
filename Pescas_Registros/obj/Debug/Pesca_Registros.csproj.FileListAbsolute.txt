@@ -80,7 +80,6 @@ C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\P
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\obj\Debug\Pesca_Registros.Properties.Resources.resources
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\obj\Debug\Pesca_Registros.csproj.GenerateResource.cache
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\obj\Debug\Pesca_Registros.csproj.CoreCompileInputs.cache
-C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\obj\Debug\Pesca_Registros.csprojAssemblyReference.cache
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\bin\Debug\db_pesca.sqlite
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\bin\Debug\mongocrypt.dll
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\bin\Debug\Pesca_Registros.exe.config
@@ -115,3 +114,5 @@ C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\P
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\bin\Debug\System.Text.Encoding.CodePages.dll
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\bin\Debug\ZstdSharp.dll
+C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\obj\Debug\Pesca_Registros.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\SiembrasMiantioquia\SiembrasMiantioquia_WinForms\Parcial_4\Pescas_Registros\obj\Debug\Pesca_Registros.csproj.SuggestedBindingRedirects.cache

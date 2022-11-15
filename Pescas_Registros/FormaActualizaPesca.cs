@@ -61,54 +61,7 @@ namespace Pesca_Registros
             dtpFecha.Value = unaPesca.Fecha;
         }
 
-        public int ValidarcodigoPesca(int default_codigo)
-        {
-            string[] codigo = new string[lstInfoPescas.Items.Count];
-            string[] validacion = new string[lstInfoPescas.Items.Count];
-            int bandera = 0;
-            int[] array = new int[lstInfoPescas.Items.Count];
-            validacion = lstInfoPescas.Text.Split('\u002C');
-            for (int i = 0; i < validacion.Length; i++)
-            {
-                codigo = validacion[i].ToString().Split('-');
-                array[bandera] = int.Parse(codigo[0]);
-                bandera++;
-            }
-            for (int j = 0; j < lstInfoPescas.Items.Count; j++)
-            {
-                if (array[j] == default_codigo)
-                {
-                    return lstInfoPescas.Items.Count + 1;
-                }
-            }
-            return default_codigo;
-        }
-        public string ValidarNombrePesca(string default_nombre)
-        {
-            string[] codigo = new string[lstInfoPescas.Items.Count * 2];
-            string[] validacion = new string[lstInfoPescas.Items.Count * 2];
-            int bandera = 0;
-            string[] array = new string[lstInfoPescas.Items.Count];
-            validacion = lstInfoPescas.Text.Split('\u002C');
-            for (int i = 0; i < validacion.Length; i++)
-            {
-                codigo = validacion[i].ToString().Split('-');
-                array[bandera] = codigo[1];
-                bandera++;
-            }
-            for (int j = 0; j < lstInfoPescas.Items.Count; j++)
-            {
-                if (array[j] == default_nombre)
-                {
-                    MessageBox.Show("Ese nombre ya existe.",
-                                    "Ingreso Incorrecto",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    return null;
-                }
-            }
-            return default_nombre;
-        }
+       
 
 
 
@@ -188,7 +141,7 @@ namespace Pesca_Registros
             {
                 Pesca unaPesca = new Pesca();
                 unaPesca.Codigo = int.Parse(txtCodigoPesca.Text);
-                unaPesca.Peso_Total = double.Parse(txtPeso.Text);
+                unaPesca.Peso_Total = Math.Abs(double.Parse(txtPeso.Text));
                 unaPesca.Fecha = dtpFecha.Value;
                 unaPesca.Nombre_Metodo = lstMetodos.SelectedItem.ToString();
                 unaPesca.Nombre_Cuenca = lstCuencas.SelectedItem.ToString();

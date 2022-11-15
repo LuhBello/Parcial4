@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using System.Configuration;
 using System.Data;
 using System;
+using System.Windows.Forms;
 
 namespace Pesca_Registros
 {
@@ -38,24 +39,50 @@ namespace Pesca_Registros
             return resultado;
         }
 
-        private static bool ValidaCuenca(Cuenca unaCuenca)
+        
+        public static bool ValidaCuenca(Cuenca default_c)
         {
-            bool resultado = false;
+            string[] validacion = ObtieneListaInfoPescas().ToArray();
+            int bandera = 0;
+            string[] array = new string[ObtieneListaInfoPescas().Count];
 
-            if ( unaCuenca.Codigo != 0)
-                resultado = true;
-
-            return resultado;
+            for (int i = 0; i < validacion.Length; i++)
+            {
+                string[] codigo = validacion[i].ToString().Split('-');
+                array[bandera] = codigo[1];
+                bandera++;
+            }
+            for (int j = 0; j < array.Length; j++)
+            {
+                if (array[j].Trim().Equals(default_c.Nombre.Trim()))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
-        private static bool ValidaMetodo(Metodo unaMetodo)
+        public static bool ValidaMetodo(Metodo default_m)
         {
-            bool resultado = false;
+            string[] validacion = ObtieneListaInfoPescas().ToArray();
+            int bandera = 0;
+            string[] array = new string[ObtieneListaInfoPescas().Count];
 
-            if (unaMetodo.Codigo != 0)
-                resultado = true;
+            for (int i = 0; i < validacion.Length; i++)
+            {
+                string[] codigo = validacion[i].ToString().Split('-');
+                array[bandera] = codigo[2];
+                bandera++;
+            }
+            for (int j = 0; j < array.Length; j++)
+            {
+                if (array[j].Equals(default_m.Nombre))
+                {
 
-            return resultado;
+                    return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -66,28 +93,111 @@ namespace Pesca_Registros
         private static int ObtieneSiguienteValorContador(string nombreContador)
         {
             int siguienteValor = 0;
-
             string cadenaConexion = ObtenerCadenaConexion(idStringConexion);
             var clienteDB = new MongoClient(cadenaConexion);
             var miDB = clienteDB.GetDatabase(nombreDB);
 
+            switch (nombreContador)
+            {
+                case "pescas":
+                    siguienteValor = ValidarCodigoPescas();
+                    break;
+                case "cuencas":
+                     siguienteValor = ValidarCodigoCuencas();
+                     break;
+                case "metodos":
+                     siguienteValor = ValidarCodigoMetodos();
+                     break;
+            }
             //Obtenemos el valor actual del contador
             var miColeccion = miDB.GetCollection<Contador>("contador");
             var filtroContador = new BsonDocument { { "nombre", nombreContador } };
-
             var elContador = miColeccion.Find(filtroContador).FirstOrDefault();
-
-            siguienteValor = elContador.Valor++;
-
             //Actualizamos el contador con ese valor
             miColeccion.ReplaceOne(unContador => unContador.Nombre == elContador.Nombre, elContador);
             return siguienteValor;
         }
 
-        private static void ComprobarConsecutivo(string nombreContador)
+        public static int ValidarCodigoPescas()
         {
+            string[] codigo;
+            int bandera = 0;
+            int[] array = new int[ObtieneListaInfoPescas().Count];
+            string[] validacion = ObtieneListaInfoPescas().ToArray<string>();
 
+            for (int i = 0; i < validacion.Length; i++)
+            {
+                codigo = validacion[i].ToString().Split('-');
+                array[bandera] = int.Parse(codigo[0]);
+                bandera++;
+            }
+            Array.Sort(array);
+            int bandera_2 = 1;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == bandera_2) bandera_2++;
+                else
+                {
+                    return bandera_2;
+                }
+            }
+            return array.Length + 1;
         }
+
+        public static int ValidarCodigoCuencas()
+        {
+            string[] codigo;
+            int bandera = 0;
+            int[] array = new int[ObtieneListaInfoCuencas().Count];
+            string[] validacion = ObtieneListaInfoCuencas().ToArray<string>();
+
+            for (int i = 0; i < validacion.Length; i++)
+            {
+                codigo = validacion[i].ToString().Split('-');
+                array[bandera] = int.Parse(codigo[0]);
+                bandera++;
+            }
+            Array.Sort(array);
+            int bandera_2 = 1;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == bandera_2) bandera_2++;
+                else
+                {
+                    return bandera_2;
+                }
+            }
+            return array.Length + 1;
+        }
+
+        public static int ValidarCodigoMetodos()
+        {
+            string[] codigo;
+            int bandera = 0;
+            int[] array = new int[ObtieneListaInfoMetodos().Count];
+            string[] validacion = ObtieneListaInfoMetodos().ToArray<string>();
+
+            for (int i = 0; i < validacion.Length; i++)
+            {
+                codigo = validacion[i].ToString().Split('-');
+                array[bandera] = int.Parse(codigo[0]);
+                bandera++;
+            }
+            Array.Sort(array);
+            int bandera_2 = 1;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == bandera_2) bandera_2++;
+                else
+                {
+                    return bandera_2;
+                }
+            }
+            return array.Length + 1;
+        }
+
+
+
 
         /// <summary>
         /// Obtiene el detalle de las pescas registradas en la DB

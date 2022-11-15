@@ -58,7 +58,7 @@ namespace Pesca_Registros
             try
             {
                 Pesca unaPesca = new Pesca();
-                unaPesca.Peso_Total = double.Parse(txtTotalHectareas.Text);
+                unaPesca.Peso_Total = Math.Abs(double.Parse(txtTotalHectareas.Text));
                 unaPesca.Fecha = dtpFecha.Value;
                 unaPesca.Nombre_Metodo = lstMetodos.SelectedItem.ToString();
                 unaPesca.Nombre_Cuenca = lstCuencas.SelectedItem.ToString();
